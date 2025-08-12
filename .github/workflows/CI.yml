@@ -14,12 +14,19 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set up Java
-        uses: actions/setup-java@v3
+      - name: Set up Java 11 (Temurin)
+        uses: actions/setup-java@v4
         with:
-          distribution: 'temurin'
+          distribution: temurin
           java-version: '11'
+          check-latest: true
+
+      - name: Verify Java version
+        run: |
+          java -version
+          mvn -version
 
       - name: Build and test with Maven
-        run: mvn clean test jacoco:report coveralls:report \
-          -DrepoToken=${COVERALLS_REPO_TOKEN}
+        run: |
+          mvn clean test jacoco:report coveralls:report \
+            -DrepoToken=${COVERALLS_REPO_TOKEN}
