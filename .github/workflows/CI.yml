@@ -33,4 +33,4 @@ jobs:
         run: mvn clean verify jacoco:report -Dmaven.test.failure.ignore=true
 
       - name: Upload Coverage to Coveralls
-        run: mvn coveralls:report -DrepoToken=${{ secrets.COVERALLS_REPO_TOKEN }} -DsourceDirectories=${{ github.workspace }}/src/main/java
+        run: mvn coveralls:report -DrepoToken=${{ secrets.COVERALLS_REPO_TOKEN }}
