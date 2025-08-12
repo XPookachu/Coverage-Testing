@@ -21,7 +21,7 @@ jobs:
           java-version: '11'
           check-latest: true
 
-      - name: Verify Java version
+      - name: Verify Java & Maven version
         run: |
           java -version
           mvn -version
