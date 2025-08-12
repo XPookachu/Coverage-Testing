@@ -4,6 +4,9 @@ public class Absoluto {
         if (valor < 0) {
             res = -valor;
         }
+        else if (valor == 0){
+            res = 0;
+        }
         System.out.println(res);
         return res;
     }
