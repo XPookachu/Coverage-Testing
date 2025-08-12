@@ -8,15 +8,23 @@
     <artifactId>Coverage-Testing</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <properties>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <jacoco.version>0.8.13</jacoco.version>
+    </properties>
+
     <dependencies>
+        <!-- JUnit 4 -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.13</version>
+            <version>4.13.2</version>
             <scope>test</scope>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.powermock/powermock-mockito-release-full -->
+        <!-- PowerMock for Mockito -->
         <dependency>
             <groupId>org.powermock</groupId>
             <artifactId>powermock-mockito-release-full</artifactId>
@@ -24,24 +32,21 @@
             <type>pom</type>
             <scope>test</scope>
         </dependency>
-
-
     </dependencies>
 
     <build>
         <plugins>
+            <!-- JaCoCo -->
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.8.13</version>
+                <version>${jacoco.version}</version>
                 <executions>
-                    <!-- Attach JaCoCo to the test phase 1 -->
                     <execution>
                         <goals>
                             <goal>prepare-agent</goal>
                         </goals>
                     </execution>
-                    <!-- Generate report after tests -->
                     <execution>
                         <id>report</id>
                         <phase>test</phase>
@@ -51,6 +56,8 @@
                     </execution>
                 </executions>
             </plugin>
+
+            <!-- Surefire for running tests -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
@@ -63,6 +70,8 @@
                     </dependency>
                 </dependencies>
             </plugin>
+
+            <!-- Coveralls -->
             <plugin>
                 <groupId>com.github.hazendaz.maven</groupId>
                 <artifactId>coveralls-maven-plugin</artifactId>
@@ -73,5 +82,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>
